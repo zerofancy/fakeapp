@@ -22,7 +22,8 @@ jobs:
         run: chmod +x gradlew
       - name: Build Debug Version with Gradle
         run: ./gradlew assembleDebug # 懒得搞签名了，直接用Debug包吧
-
+      - name: Move Apks to current Directory
+        run: find app/build -name "*.apk" -type f| xargs -I {} mv {} ./
       - name: Publish snapshot version
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
